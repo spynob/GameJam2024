@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private static int numberOfPlanets = 10;
     public GameObject planetPrefab;
     private float minSpeed = 0.0001f;
     private float maxSpeed = 0.005f;
@@ -14,6 +13,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        int numberOfPlanets = Random.Range(2, 10);
         for (int i = 0; i < numberOfPlanets; i++)
         {
             GameObject planet = Instantiate(planetPrefab, new Vector3(500 + i * 450, 0, 500 + i * 350), Quaternion.identity);
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
             pBody.mass = Random.Range(1, 30);
             planet.transform.localScale = new Vector3(scaleFactor * pBody.mass, scaleFactor * pBody.mass, scaleFactor * pBody.mass);
             planet.GetComponent<Celestials>().Name = "Planet" + i.ToString();
-            planet.GetComponent<Celestials>().sphereCollider.radius = scaleFactor * pBody.mass / 2; 
+            planet.GetComponent<Celestials>().sphereCollider.radius = scaleFactor * pBody.mass / 2;
             //float speed = (float)random.NextDouble() * (maxSpeed - minSpeed) + minSpeed;
             //p.angularVelocity = speed;
             //p.initialPosition = random.Next(0, Math.PI / speed);
