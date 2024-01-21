@@ -59,13 +59,22 @@ public class Train : MonoBehaviour
         //Percentage of travel done based on a bell curve
         float travelPercentage = (float)(1 / (0.4 * Math.Sqrt(2 * Math.PI)) * Math.Pow(Math.E, -(Math.Pow((t - 2), 2) / (2 * Math.Pow(0.4, 2)))));
         //Velocity y vector 
-        Vector3 Velocity = new(transform.position.x, (cruiseAlt - currentAlt) * travelPercentage, transform.position.z);
+        Vector3 Velocity = new(0, 0, 0);
+        if (Steps == 1)
+        {//Launching function
+            Velocity = new(transform.position.x, (cruiseAlt - currentAlt) * travelPercentage + currentAlt, transform.position.z);
+        }
+        else
+        {//Landing function 
+            Velocity = new(transform.position.x, (cruiseAlt - currentAlt) * travelPercentage, transform.position.z);
+        }
         //New position of our train
         transform.position = Velocity;
         TargetPlanetPos.y = transform.position.y;
         transform.position = Vector3.MoveTowards(transform.position, TargetPlanetPos, forwardSpeed * Time.deltaTime); 
         //Increment the x variable of our bell curve based 
         t += increment * Time.deltaTime;
+        Debug.Log(t); 
     }
 
     public void CruiseSpeedTrain(Vector3 TargetPlanetPos)
@@ -96,6 +105,7 @@ public class Train : MonoBehaviour
                     {
                         Distance = Mathf.Sqrt(Mathf.Pow(OriginalPlanet.transform.position.x - transform.position.x, 2) + Mathf.Pow(OriginalPlanet.transform.position.y + OriginalPlanet.sphereCollider.radius - transform.position.y, 2) + Mathf.Pow(OriginalPlanet.transform.position.z - transform.position.z, 2));
                         ++Steps;
+                        t = 1.958f;
                     }
                     break;
                 }
@@ -124,6 +134,8 @@ public class Train : MonoBehaviour
                         if(TargetPlanet.transform.position.x == transform.position.x && TargetPlanet.transform.position.z == transform.position.z)
                         {
                             Triggered = false;
+                            t = 0;
+                            Steps = 1;
                         }
                     }
                     break;
