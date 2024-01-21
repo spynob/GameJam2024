@@ -107,7 +107,7 @@ public class Train : MonoBehaviour
         else if (Steps == 2)
         {
             landingAlt = TargetPlanet.transform.position.y + TargetPlanet.sphereCollider.radius;
-            print(landingAlt); 
+            Debug.Log("bruh");
             ++Steps;
         }
 
@@ -118,6 +118,7 @@ public class Train : MonoBehaviour
         }
         else
         {
+            Debug.Log("help");
             CruiseSpeedTrain(TargetPlanet.transform.position);
         }
     }
