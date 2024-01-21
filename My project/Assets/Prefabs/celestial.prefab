@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3567390658034527436}
   - component: {fileID: 976975317374859484}
   - component: {fileID: 2173169750635903161}
+  - component: {fileID: -3410851562510620341}
   m_Layer: 0
   m_Name: celestial
   m_TagString: celestial
@@ -141,6 +142,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -10
+--- !u!135 &-3410851562510620341
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361165736707374230}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3062457736342839742
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +215,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 145.78
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &4958193821789980937
 MeshRenderer:
