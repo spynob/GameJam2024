@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7568056903621073545}
   - component: {fileID: 6390518120947883797}
   - component: {fileID: 3567390658034527436}
+  - component: {fileID: 976975317374859484}
   m_Layer: 0
   m_Name: celestial
   m_TagString: celestial
@@ -133,3 +134,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361165736707374230}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &976975317374859484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361165736707374230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad246c52acfc42459401d75944b5f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  sphereCollider: {fileID: 7568056903621073545}
