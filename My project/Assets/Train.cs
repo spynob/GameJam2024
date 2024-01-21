@@ -1,15 +1,17 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Train : MonoBehaviour
 {
+    public Stops[] allStops; //Change to planets
 
-    public float speed = 0.4f;
-    public Stops[] allStops;
-
-    private int CurrentStop = 0;
-    private const float cruiseAlt = 100000;
-    private int t = 0; 
+    public const float cruiseAlt = 500; //Top altitude is half of what the number is
+    private float t = 0;
+    private float ForwardSpeed = 20f;
+    private float time = 19.55f;
+    private float increment = 0.1f;
+    private int Steps = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -20,34 +22,45 @@ public class Train : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < cruiseAlt - 10)
-        {
-            MoveTrain(allStops[CurrentStop].StopPosition);
-        }
+        MoveTrain();
     }
 
-    public void MoveTrain(Vector3 NextStop)
+    public void RotateTrainTowardsTarget()
     {
-        //Vector3 velocity = new(NextStop.x - transform.position.x, NextStop.y - transform.position.y, NextStop.z - transform.position.z);
-        //velocity.Normalize();
 
-        Vector3 test = new(t * Time.deltaTime, cruiseAlt * Mathf.Atan(Time.time), 0);
+    }
 
-        //transform.rotation = Quaternion.LookRotation(velocity);
-        transform.position = test * speed;
+    public void LaunchTrain()
+    {
+        //Position of the target planet normalized
+        Vector3 planetPos = new(28, 0, 31);
+        planetPos.Normalize();
+        //Current altitude
+        float currentAlt = transform.position.y;
+        //Percentage of travel done based on a bell curve
+        float travelPercentage = (float)(1 / (0.4 * Math.Sqrt(2 * Math.PI)) * Math.Pow(Math.E, -(Math.Pow((t - 2), 2) / (2 * Math.Pow(0.4, 2)))));
+        //Velocity vector 
+        Vector3 Velocity = new(transform.position.x + ForwardSpeed * planetPos.x * Time.deltaTime, (cruiseAlt - currentAlt) * travelPercentage, transform.position.z + ForwardSpeed * planetPos.z * Time.deltaTime);
+        //New position of our train
+        transform.position = Velocity;
+        //Increment the x variable of our bell curve based 
+        t += increment * Time.deltaTime;
+    }
 
-        ++t; 
+    public void CruiseTrain()
+    {
 
-        //if(Mathf.Abs(transform.position.x - NextStop.x) < 1 
-        //    && Mathf.Abs(transform.position.y - NextStop.y) < 1 
-        //    && Mathf.Abs(transform.position.z - NextStop.z) < 1)
-        //{
-        //    transform.position = NextStop; 
-        //}
+    }
 
-        //if (transform.position == NextStop)
-        //{
-        //    ++CurrentStop;
-        //}
+    public void MoveTrain()
+    {
+        if (transform.position.y < cruiseAlt / 2 - 1 && Steps == 1)
+        {
+            LaunchTrain();
+        }
+        else
+        {
+            ++Steps; 
+        }
     }
 }
