@@ -31,11 +31,11 @@ public class Train : MonoBehaviour
     {
         if(Triggered)
         {
-            MoveTrain(allCelestials[1], allCelestials[0]);
+            MoveTrain(allCelestials[0], allCelestials[0]);
         }
         else
         {
-            CruiseSpeedTrain(allCelestials[1].transform.position);
+            CruiseSpeedTrain(allCelestials[0].transform.position);
         }
     }
 

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: 
-  sphereCollider: {fileID: 0}
+  sphereCollider: {fileID: -3410851562510620341}
 --- !u!114 &2173169750635903161
 MonoBehaviour:
   m_ObjectHideFlags: 0
