@@ -20,7 +20,8 @@ public class Spawner : MonoBehaviour
             Rigidbody pBody = planet.GetComponent<Rigidbody>();
             pBody.mass = Random.Range(1, 30);
             planet.transform.localScale = new Vector3(scaleFactor * pBody.mass, scaleFactor * pBody.mass, scaleFactor * pBody.mass);
-            planet.GetComponent<Celestials>().Name = "Planet" + i.ToString(); 
+            planet.GetComponent<Celestials>().Name = "Planet" + i.ToString();
+            planet.GetComponent<Celestials>().sphereCollider.radius = scaleFactor * pBody.mass / 2; 
             //float speed = (float)random.NextDouble() * (maxSpeed - minSpeed) + minSpeed;
             //p.angularVelocity = speed;
             //p.initialPosition = random.Next(0, Math.PI / speed);
